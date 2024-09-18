@@ -1,7 +1,21 @@
 @import 'bootstrap/scss/bootstrap';
 @import '@fortawesome/fontawesome-free/css/all.css';
+@import "./partials/navbar";
+@import "./partials/page-btn";
+
+:root {
+    --bg-nav-red: rgb(139 1 1);
+    --bg-pokedex: rgb(192 14 14);
+    --radius-pokedex: 20px;
+}
 
 body {
     background-color: #2f2f2f;
     color: #f1f1f1;
+
+    .pokedex {
+        background-color: var(--bg-pokedex);
+        padding: 20px;
+        border-radius: var(--radius-pokedex);
+    }
 }

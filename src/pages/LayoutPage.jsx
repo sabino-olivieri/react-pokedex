@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../stores/store';
 import styled from 'styled-components';
+import Navbar from '../components/Navbar';
 
 // Creazione di un bottone con stile
 const Button = styled.button`
@@ -19,16 +20,25 @@ const Button = styled.button`
   }
 `;
 
-export default function LayoutPage() {
 
-    return (
-        <>
-            <Provider store={store}>
-                <h1>Layout</h1> 
-                <Button>button</Button>
-                <Outlet />
-            </Provider>
-        </>
-    )
+
+export default function LayoutPage() {
+  
+
+  return (
+    <>
+      <Provider store={store}>
+        <Navbar />
+
+        <div className="container my-3 pokedex" id='main-container'>
+          <div className="row g-2">
+        {/* <Button>button</Button> */}
+            
+            <Outlet />
+          </div>
+        </div>
+      </Provider>
+    </>
+  )
 }
 

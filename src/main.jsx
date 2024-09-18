@@ -6,6 +6,7 @@ import ErrorPage from './pages/ErrorPage.jsx';
 import Card from './components/Card.jsx';
 
 import "./style/general.scss";
+import ListPokemon from './components/ListPokemon.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/card",
         element: <Card />,
+      },
+      {
+        path: "/",
+        element: <ListPokemon/>,
       },
     ],
   },
