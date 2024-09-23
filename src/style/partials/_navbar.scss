@@ -1,3 +1,7 @@
 .ms_navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
     background-color: var(--bg-nav-red);
+    z-index: 2;
 }

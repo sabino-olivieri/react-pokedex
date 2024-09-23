@@ -1,0 +1,118 @@
+.ms_overlay {
+    height: 100vh;
+    z-index: 10;
+    width: 100%;
+    position: fixed;
+    margin: 0;
+    top: 0;
+    left: 0;
+    background-color: rgba(68, 68, 68, 0.489);
+    transition: all 0.5s;
+
+    .ms_sidebar {
+        height: 100%;
+        background-color: var(--bg-nav-red);
+        overflow: auto;
+        top: 0;
+        left: 0;
+
+        .ms_closebtn {
+            border-radius: 50%;
+        }
+
+        .card {
+            cursor: unset;
+            .col-md-4 {
+                img {
+                    filter: drop-shadow(5px 2px 30px rgba(56, 56, 56, 0.692));
+                    transform: scale(130%);
+                    transition: all 1s;
+
+                    &:hover {
+                        transform: scale(140%);
+                    }
+                }
+            }
+
+            .id-pokemon {
+                right: 10px;
+                top: 10px;
+            }
+        }
+
+        .ms_range {
+            input[type="range"] {
+                /* removing default appearance */
+                -webkit-appearance: none;
+                appearance: none;
+                /* creating a custom design */
+                width: 85%;
+                height: 15px;
+                /*  slider progress trick  */
+                overflow: hidden;
+                border-radius: 15px;
+            }
+
+            /* Track: webkit browsers */
+            input[type="range"]::-webkit-slider-runnable-track {
+                height: 15px;
+                background: #ccc;
+                border-radius: 15px;
+            }
+
+            /* Track: Mozilla Firefox */
+            input[type="range"]::-moz-range-track {
+                height: 15px;
+                background: #ccc;
+                border-radius: 15px;
+            }
+
+            /* Thumb: webkit */
+            input[type="range"]::-webkit-slider-thumb {
+                /* removing default appearance */
+                -webkit-appearance: none;
+                appearance: none;
+                /* creating a custom design */
+                height: 15px;
+                width: 15px;
+                background: transparent;
+                background-image: url("/src/assets/PokeBall.png");
+                background-size: cover;
+                border-radius: 50%;
+                /*  slider progress trick  */
+                box-shadow: -407px 0 0 400px #f50;
+            }
+
+        }
+    }
+}
+
+.ms_hidden {
+    transform: translate(-100%);
+}
+
+
+
+@media screen and (min-width: 1024px) {
+    .ms_sidebar {
+        width: 70%;
+    }
+
+
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        .col-md-4 {
+            img {
+                max-width: 250px;
+                transform: scale(110%);
+            }
+        }
+
+        img {
+            max-width: 200px;
+            
+        }
+    }
+}

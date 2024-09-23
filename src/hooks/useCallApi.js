@@ -7,9 +7,11 @@ export default function useCallApi(link) {
         // Funzione asincrona per recuperare i dati
         const fetchData = async () => {
             try {
-               
+            
                 const response = await axios.get(link); // Richiesta dati
                 setData(response.data); // Aggiorna lo stato con i dati ricevuti
+                console.log(data);
+                
 
             } catch (err) {
                 console.log('Errore:', err);
@@ -17,10 +19,10 @@ export default function useCallApi(link) {
             }
         };
 
-        if (link) {
+        if (link && link !== null) {
             fetchData(); // Chiama la funzione solo se il link è valido
         }
     }, [link]); // Esegui l'effetto solo quando il link cambia
 
-    return data; // Restituisci i dati, lo stato di caricamento e l'errore
+    return data; // Restituisci i dati
 }

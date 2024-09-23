@@ -4,6 +4,8 @@ import PokemonSlice from './slices/PokemonSlice';
 import PagePokemonSlice from './slices/PagePokemonSlice';
 import NextButtonSlice from './slices/NextButtonSlice';
 import PrevButtonSlice from './slices/PrevButtonSlice';
+import SidebarShowSlice from './slices/SidebarShowSlice';
+import SelectedPokemonSlice from './slices/SelectedPokemonSlice';
 
 const store = configureStore({
     reducer: {
@@ -12,6 +14,8 @@ const store = configureStore({
         pagePokemon: PagePokemonSlice,
         nextbutton: NextButtonSlice,
         prevbutton: PrevButtonSlice,
+        sidebarShow: SidebarShowSlice,
+        selectedpokemon: SelectedPokemonSlice,
     },
 });
 

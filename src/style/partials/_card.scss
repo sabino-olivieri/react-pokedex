@@ -1,0 +1,18 @@
+.ms_card {
+    cursor: pointer;
+    border: 0;
+    background-color: #f3f3f3;
+    transition: all 0.5s;
+
+    img {
+        transition: all 0.5s;
+        filter: drop-shadow(5px 2px 15px rgba(56, 56, 56, 0.692));
+    }
+
+    &:hover {
+        
+        img {
+            transform: scale(110%);
+        }
+    }
+}
