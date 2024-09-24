@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeSelectedPokemon } from "../stores/slices/SelectedPokemonSlice";
+import { useState } from "react";
+import Loader from "./Loader";
 
 export default function EvolutionCard({ chain }) {
 
@@ -8,6 +10,7 @@ export default function EvolutionCard({ chain }) {
     const newurl = `https://pokeapi.co/api/v2/pokemon/${id}/`;
     const prevurl = useSelector((state) => state.selectedpokemon);
 
+    const [loading, setLoading] = useState(true);
 
     function changeUrl() {
         if (prevurl != newurl) {
@@ -54,12 +57,20 @@ export default function EvolutionCard({ chain }) {
                 <div className="evolution-card p-2 d-flex flex-column align-items-center" onClick={changeUrl}>
                     <div className="image-card p-1">
 
+
+                        {loading && <Loader />}
+
                         <img
                             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-                            onError={(e) => { e.target.src = "/src/assets/placeholder.jpg"; }}
+                            onLoad={() => setLoading(false)}
+                            onError={(e) => {
+                                e.target.src = "/src/assets/placeholder.jpg";
+                                setLoading(false);
+                            }}
                             loading="lazy"
                             className="card-img-top m-auto"
                             alt={`${chain.species.name} image`}
+                            style={{ position: loading ? 'absolute' : 'relative', opacity: loading ? '0' : '1', width: loading ? '0px' : '100%', height: loading ? '0px' : '100%'  }}
                         />
                     </div>
 

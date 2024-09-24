@@ -12,16 +12,16 @@ export default function Card({ pokemon }) {
 
     const dispatch = useDispatch();
     
-    // Add a loading state
-    const [loading, setLoading] = useState(true); // Start loading as true
+    const [loading, setLoading] = useState(true);
 
     const handleClick = () => {
         dispatch(changeSelectedPokemon(url));
         dispatch(changeVisibility(true));
     };
 
+
     useEffect(() => {
-        // Reset loading state whenever pagePokemon changes
+
         setLoading(true);
     }, [pagePokemon]);
 
@@ -40,7 +40,7 @@ export default function Card({ pokemon }) {
                     loading="lazy"
                     className="card-img-top m-auto"
                     alt={`${pokemon.name} image`}
-                    style={{ position: loading ? 'absolute' : 'relative', opacity: loading ? '0' : '1'}}
+                    style={{ position: loading ? 'fixed' : 'relative', opacity: loading ? '0' : '1'}}
                 />
                 
                 <div className="card-body">

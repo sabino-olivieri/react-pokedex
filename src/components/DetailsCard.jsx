@@ -1,8 +1,11 @@
+import { useState } from "react";
+import Loader from "./Loader";
 import Range from "./Range";
 import Types from "./Types";
 
 export default function DetailsCard({ data }) {
 
+    const [loading, setLoading] = useState(true);
 
     return (
         <>
@@ -11,7 +14,21 @@ export default function DetailsCard({ data }) {
                     <div className="card mb-3 border-0 ms_card ">
                         <div className="row g-3 flex-column flex-md-row">
                             <div className="col-12 col-md-4 d-flex justify-content-center align-items-center">
-                                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`} className="img-fluid rounded-start" alt="..." />
+
+                                {loading && <Loader />}
+
+                                <img
+                                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`}
+                                    onLoad={() => setLoading(false)}
+                                    onError={(e) => {
+                                        e.target.src = "/src/assets/placeholder.jpg";
+                                        setLoading(false);
+                                    }}
+                                    loading="lazy"
+                                    className="card-img-top m-auto"
+                                    alt={`${data.name} image`}
+                                    style={{ position: loading ? 'absolute' : 'relative', opacity: loading ? '0' : '1' }}
+                                />
                             </div>
                             <div className="col-12 col-md-8">
                                 <div className="card-body rounded-2 p-4 position-relative">
