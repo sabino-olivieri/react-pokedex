@@ -40,7 +40,7 @@ export default function Card({ pokemon }) {
                     loading="lazy"
                     className="card-img-top m-auto"
                     alt={`${pokemon.name} image`}
-                    style={{ position: loading ? 'fixed' : 'relative', opacity: loading ? '0' : '1'}}
+                    style={{ position: loading ? 'absolute' : 'relative', opacity: loading ? '0' : '1'}}
                 />
                 
                 <div className="card-body">
