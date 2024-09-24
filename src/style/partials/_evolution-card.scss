@@ -1,0 +1,25 @@
+.evolution {
+    background: url("src/assets/body_gray_bg.png");
+    color: white;
+    .evolution-card {
+        background-color: grey;
+        box-sizing: content-box;
+        border-radius: 50%;
+        height: 200px;
+        
+        aspect-ratio: 1/ 1;
+        cursor: pointer;
+        border: 5px solid white;
+        transition: all 0.5s;
+        &:hover {
+            transform: scale(105%);
+            box-shadow: 4px 4px 10px rgb(37, 37, 37);
+            
+        }
+    
+        .image-card {
+            height: 150px;
+            aspect-ratio: 1 / 1;
+        }
+    }
+}

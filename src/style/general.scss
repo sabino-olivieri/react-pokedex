@@ -4,6 +4,8 @@
 @import "./partials/page-btn";
 @import "./partials/card";
 @import "./partials/sidebar";
+@import "./partials/evolution-card";
+@import "./partials/loader";
 
 :root {
     --bg-nav-red: rgb(139 1 1);
@@ -12,7 +14,7 @@
 }
 
 body {
-    background-color: #2f2f2f;
+    background: url("src/assets/body_bg.png");
     color: #f1f1f1;
 
     .pokedex {

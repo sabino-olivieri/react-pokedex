@@ -15,7 +15,6 @@
         overflow: auto;
         top: 0;
         left: 0;
-
         .ms_closebtn {
             border-radius: 50%;
         }
@@ -83,6 +82,14 @@
                 box-shadow: -407px 0 0 400px #f50;
             }
 
+        }
+
+        .ms_bedge {
+            padding: 4px 15px;
+            font-weight: 500;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
         }
     }
 }

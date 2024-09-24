@@ -5,7 +5,6 @@ const PrevButtonSlice = createSlice({
     initialState: null,
     reducers: {
         changeLinkPrev: (state, action) => {
-            console.log(action.payload);
             
             return action.payload
         }

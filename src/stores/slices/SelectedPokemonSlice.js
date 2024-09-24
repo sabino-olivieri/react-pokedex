@@ -5,6 +5,7 @@ const SelectedPokemonSlice = createSlice({
     initialState: '',
     reducers: {
         changeSelectedPokemon: (state, action) => {
+            
             return action.payload
         }
     }

@@ -5,7 +5,6 @@ const NextButtonSlice = createSlice({
     initialState: null,
     reducers: {
         changeLinkNext: (state, action) => {
-            console.log(action.payload);
             
             return action.payload
         }

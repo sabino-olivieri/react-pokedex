@@ -9,8 +9,7 @@ export default function useCallApi(link) {
             try {
             
                 const response = await axios.get(link); // Richiesta dati
-                setData(response.data); // Aggiorna lo stato con i dati ricevuti
-                console.log(data);
+                setData(response.data); // Aggiorna lo stato con i dati ricevutiì
                 
 
             } catch (err) {

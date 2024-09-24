@@ -1,60 +1,81 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { changeVisibility } from "../stores/slices/SidebarShowSlice";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DetailsCard from "./DetailsCard";
+import EvolutionChain from "./EvolutionChain"; // Importa il nuovo componente
+import Loader from "./Loader";
 
 export default function SidebarDetails() {
-
     const visible = useSelector((state) => state.sidebarShow);
     const url = useSelector((state) => state.selectedpokemon);
     const [data, setData] = useState({});
     const dispatch = useDispatch();
 
-
     const handleClick = () => {
         dispatch(changeVisibility(false));
-    }
+    };
 
     const handleSidebarClick = (event) => {
         event.stopPropagation(); // Previene la propagazione del click all'overlay
-    }
+    };
 
     useEffect(() => {
+        const fetchPokemonData = async () => {
+            try {
+                setData(null);
+                const resp = await axios.get(url);
+                    setData(resp.data);
 
-        axios.get(url).then((resp) => {
-            setData(resp.data);
-            console.log(data);
 
-        })
+            } catch (error) {
+                console.error("Errore nel recupero dei dati del Pokémon:", error);
+            }
+        };
 
-    }, [url])
+        fetchPokemonData();
+    }, [url]);
 
+    const renderSidebar = () => {
+        if (data && Object.keys(data).length > 0) {
+            return (
+                <>
+                    <DetailsCard data={data} />
+                    <EvolutionChain pokemonUrl={url} />
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <div className="px-2 px-md-5">
+                        <div className="card mb-3 border-0 ms_card ">
+                            <div className="row g-3 flex-column flex-md-row py-5">
+                                <Loader />
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )
+        }
+
+    }
 
 
     return (
         <>
             <div className={`ms_overlay ${!visible ? 'ms_hidden' : ''}`} onClick={handleClick}>
-
-                <div className={`container-fluid ms_sidebar position-absolute`} onClick={handleSidebarClick}>
+                <div className={`container-fluid ms_sidebar position-absolute`} id="sidebar" onClick={handleSidebarClick}>
                     <div className="row">
                         <div className="p-3 text-end sticky-top mb-2">
                             <span className="btn btn-outline-light ms_closebtn" onClick={handleClick}>
                                 <i className="fa-solid fa-xmark"></i>
                             </span>
                         </div>
-                        {data != null ?
-
-                            <DetailsCard data={data} />
-
-                            : ''
-                        }
+                        {renderSidebar()}
 
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }

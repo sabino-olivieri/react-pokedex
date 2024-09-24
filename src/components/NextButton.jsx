@@ -6,7 +6,6 @@ export default function NextButton({ link }) {
     useFetchPage(clicked ? link : null); // Chiama useFetchPage solo quando cliccato
 
     const handleClick = () => {
-        console.log(link);
         
         setClicked(true); // Imposta lo stato cliccato a true
         
