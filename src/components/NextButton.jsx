@@ -2,12 +2,12 @@ import useFetchPage from "../hooks/useFecthPage";
 import { useEffect, useState } from "react";
 
 export default function NextButton({ link }) {
-    const [clicked, setClicked] = useState(false); // Stato per gestire il click
-    useFetchPage(clicked ? link : null); // Chiama useFetchPage solo quando cliccato
+    const [clicked, setClicked] = useState(false);
+    useFetchPage(clicked ? link : null);
 
     const handleClick = () => {
         
-        setClicked(true); // Imposta lo stato cliccato a true
+        setClicked(true);
         
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };

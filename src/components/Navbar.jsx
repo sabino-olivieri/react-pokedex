@@ -25,16 +25,16 @@ export default function Navbar() {
                         <circle cx="50" cy="50" r="12" fill="white" stroke="black" strokeWidth="6" />
                     </svg>
                     <button
-                        className="navbar-toggler"
+                        className="btn btn-outline-light border-2"
                         type="button"
                         onClick={handleToggle}
                         aria-controls="navbarSupportedContent"
                         aria-expanded={isOpen}
                         aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon"></span>
+                    >   
+                        <i class="fa-solid fa-bars"></i>
                     </button>
-                    <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarSupportedContent">
+                    <div className={`collapse navbar-collapse my-2 ${isOpen ? "show" : ""}`} id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 gap-3 mb-lg-0 text-white">
                             <li className="nav-item">
                                 <Link to={'/'} onClick={handleLinkClick}>Home</Link>

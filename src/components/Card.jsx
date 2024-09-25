@@ -1,28 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeVisibility } from "../stores/slices/SidebarShowSlice";
 import { changeSelectedPokemon } from "../stores/slices/SelectedPokemonSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Loader from "./Loader";
 
 export default function Card({ pokemon }) {
     const url = pokemon.url;
     const pagePokemon = useSelector((state) => state.pagePokemon);
-    
     const id = url.match(/\/(\d+)\/$/)[1];
-
     const dispatch = useDispatch();
-    
     const [loading, setLoading] = useState(true);
+    const imgRef = useRef(null);  // Create a reference for the image element
 
     const handleClick = () => {
         dispatch(changeSelectedPokemon(url));
         dispatch(changeVisibility(true));
     };
 
-
     useEffect(() => {
-
-        setLoading(true);
+        // Check if the image is already loaded (from cache or not)
+        if (imgRef.current && imgRef.current.complete) {
+            setLoading(false);
+        } else {
+            setLoading(true);
+        }
     }, [pagePokemon]);
 
     return (
@@ -31,6 +32,7 @@ export default function Card({ pokemon }) {
                 {loading && <Loader />}
                 
                 <img
+                    ref={imgRef}  // Assign the image reference
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
                     onLoad={() => setLoading(false)}
                     onError={(e) => {
@@ -40,7 +42,7 @@ export default function Card({ pokemon }) {
                     loading="lazy"
                     className="card-img-top m-auto"
                     alt={`${pokemon.name} image`}
-                    style={{ position: loading ? 'absolute' : 'relative', opacity: loading ? '0' : '1'}}
+                    style={{ position: loading ? 'absolute' : 'relative', opacity: loading ? '0' : '1' }}
                 />
                 
                 <div className="card-body">

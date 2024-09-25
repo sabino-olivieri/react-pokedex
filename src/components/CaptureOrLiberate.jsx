@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateMyPokemon } from "../stores/slices/MyPokemonSlice";
+import { changeText } from "../stores/slices/ToastSlice";
 
 export default function CaptureOrLiberate({ data }) {
     const dispatch = useDispatch();
@@ -51,14 +52,14 @@ export default function CaptureOrLiberate({ data }) {
 
             dispatch(updateMyPokemon(myNewPokemon))
 
-            console.log('catturato', data.name);
+            dispatch(changeText(`${data.name.charAt(0).toUpperCase() + data.name.slice(1)} successfully captured`))
+            
         } else {
             const myNewPokemon = [...myPokemon];
             myNewPokemon.splice(index, 1)
             dispatch(updateMyPokemon(myNewPokemon))
 
-
-            console.log('liberato', data.name);
+            dispatch(changeText(`${data.name.charAt(0).toUpperCase() + data.name.slice(1)} successfully released`))
         }
     };
 
