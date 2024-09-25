@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import "./style/general.scss";
 import ListPokemon from './components/ListPokemon.jsx';
+import MyPokemonPage from './pages/MyPokemonPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,12 +20,12 @@ const router = createBrowserRouter([
         element: <ErrorPage />,
       },
       {
-        path: "/card",
-        element: <Card />,
-      },
-      {
         path: "/",
         element: <ListPokemon/>,
+      },
+      {
+        path: "/mypokemon",
+        element: <MyPokemonPage/>,
       },
     ],
   },

@@ -6,6 +6,7 @@ import Types from "./Types";
 export default function DetailsCard({ data }) {
 
     const [loading, setLoading] = useState(true);
+    
 
     return (
         <>
