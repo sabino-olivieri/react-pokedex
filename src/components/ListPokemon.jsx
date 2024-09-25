@@ -7,7 +7,7 @@ import NextButton from './NextButton';
 import PrevButton from './PrevButton';
 import { changeLinkNext } from '../stores/slices/NextButtonSlice';
 import { changeLinkPrev } from '../stores/slices/PrevButtonSlice';
-import SidebarDetails from './SidebarDetails';
+
 import Loader from './Loader'; // Assicurati di avere un componente Loader
 
 export default function ListPokemon() {
@@ -50,7 +50,7 @@ export default function ListPokemon() {
                         {next ? <NextButton link={next}/> : ''}
                     </div>
 
-                    <SidebarDetails />
+
                 </>
             )}
         </>

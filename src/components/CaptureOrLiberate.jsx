@@ -19,8 +19,6 @@ export default function CaptureOrLiberate({ data }) {
         }
     }, [dispatch]);
 
-    // dispatch(updateMyPokemon(JSON.parse(localStorage.getItem('MyPokemon')) || []))
-    // const myPokemon = JSON.parse(localStorage.getItem('MyPokemon')) || [];
     const [text, setText] = useState('Capture');
     const [index, setIndex] = useState(null);
     const url = useSelector((state) => state.selectedpokemon);

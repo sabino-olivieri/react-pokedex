@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import store from '../stores/store';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar';
+import SidebarDetails from '../components/SidebarDetails';
 
 // Creazione di un bottone con stile
 const Button = styled.button`
@@ -29,7 +30,7 @@ export default function LayoutPage() {
     <>
       <Provider store={store}>
         <Navbar />
-
+        <SidebarDetails />
         <div className="container my-3 pokedex" id='main-container'>
           <div className="row g-2">
         {/* <Button>button</Button> */}
