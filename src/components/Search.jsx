@@ -83,11 +83,11 @@ export default function Search() {
     }, []);
 
     return (
-        <form className="d-flex w-50 position-relative" role="search">
+        <form className="ms_search w-100 position-relative" role="search">
             <input 
                 className="form-control border-0 w-100" 
                 type="search" 
-                placeholder="Search" 
+                placeholder="Search Pokémon" 
                 value={search} 
                 aria-label="Search" 
                 onChange={handleChange}
