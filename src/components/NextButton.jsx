@@ -1,29 +1,18 @@
-import useFetchPage from "../hooks/useFecthPage";
-import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import fetchPage from "../function/fetchPage";
+
 
 export default function NextButton({ link }) {
-    const [clicked, setClicked] = useState(false);
-    useFetchPage(clicked ? link : null);
+    const dispatch = useDispatch();
 
     const handleClick = () => {
-        
-        setClicked(true);
-        
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        fetchPage(link, dispatch);
     };
 
-    useEffect(()=> {
-        setClicked(false);
-    },[clicked])
-
     return (
-        <>
-            <div className="page-btn ms-auto" onClick={handleClick}>
-                <i className="fa-solid fa-chevron-right"></i>
-            </div>
-
-            
-            
-        </>
+        <div className="page-btn ms-auto" onClick={handleClick}>
+            <i className="fa-solid fa-chevron-right"></i>
+        </div>
     );
 }

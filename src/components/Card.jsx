@@ -4,6 +4,7 @@ import { changeSelectedPokemon } from "../stores/slices/SelectedPokemonSlice";
 import { useEffect, useState, useRef } from "react";
 import Loader from "./Loader";
 import { updateMyPokemon } from "../stores/slices/MyPokemonSlice";
+import replaceChar from "../function/replaceChar";
 
 export default function Card({ pokemon }) {
     const url = pokemon.url;
@@ -60,6 +61,7 @@ export default function Card({ pokemon }) {
         }
     }, [pagePokemon]);
 
+
     return (
         <div className="col-12 col-sm-6 col-md-3 col-lg-2">
             <div className="card h-100 ms_card justify-content-between position-relative" onClick={handleClick}>
@@ -81,7 +83,7 @@ export default function Card({ pokemon }) {
 
                 <div className="card-body">
                     <span>N° {id}</span>
-                    <h5 className="card-text">{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h5>
+                    <h5 className="card-text">{replaceChar(pokemon.name)}</h5>
                 </div>
 
                 <div className={captured ? 'captured' : 'd-none'}>

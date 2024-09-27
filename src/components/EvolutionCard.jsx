@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeSelectedPokemon } from "../stores/slices/SelectedPokemonSlice";
 import { useState } from "react";
 import Loader from "./Loader";
+import replaceChar from "../function/replaceChar";
 
 export default function EvolutionCard({ chain }) {
 
@@ -28,21 +29,21 @@ export default function EvolutionCard({ chain }) {
             if (details.min_level) {
                 return "Lv. " + details.min_level;
             } else if (details.item) {
-                return details.item.name;
+                return replaceChar(details.item.name);
             } else if (details.min_happiness) {
                 return "Friendship min. " + details.min_happiness;
             } else if (details.time_of_day) {
-                return "Evolves during " + details.time_of_day;
+                return "Evolves during " + replaceChar(details.time_of_day);
             } else if (details.location) {
-                return "Evolves at " + details.location.name;
+                return "Evolves at " + replaceChar(details.location.name);
             } else if (details.trigger && details.trigger.name == 'trade') {
                 return "Trade evolution";
             } else if (details.relative_physical_stats) {
                 return "Evolves based on stats";
             } else if (details.known_move) {
-                return "Evolves with move: " + details.known_move.name;
+                return "Evolves with move: " + replaceChar(details.known_move.name);
             } else if (details.party_species) {
-                return "Evolves with " + details.party_species.name + " in party";
+                return "Evolves with " + replaceChar(details.party_species.name) + " in party";
             } else if (details.gender !== null) {
                 return details.gender == 1 ? "Evolves if female" : "Evolves if male";
             }
@@ -74,7 +75,7 @@ export default function EvolutionCard({ chain }) {
                         />
                     </div>
 
-                    <h5 className="mb-1">{chain.species.name.charAt(0).toUpperCase() + chain.species.name.slice(1)}</h5>
+                    <h5 className="mb-1">{replaceChar(chain.species.name)}</h5>
 
                 </div>
 

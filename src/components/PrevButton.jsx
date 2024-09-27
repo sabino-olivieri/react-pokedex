@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react"
-import useFetchPage from "../hooks/useFecthPage"
+import { useDispatch } from "react-redux";
+import fetchPage from "../function/fetchPage";
 
 export default function PrevButton({ link }) {
-    const [clicked, setClicked] = useState(false)
-    useFetchPage(clicked ? link : null);
+    const dispatch = useDispatch();
 
     const handleClick = () => {
-        setClicked(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        fetchPage(link,dispatch)
     }
-
-    useEffect(()=> {
-        setClicked(false);
-    }, [clicked])
 
     return (
         <>

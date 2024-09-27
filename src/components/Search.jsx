@@ -1,32 +1,25 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { changeSelectedPokemon } from "../stores/slices/SelectedPokemonSlice";
 import { changeVisibility } from "../stores/slices/SidebarShowSlice";
-import { useDispatch, useSelector } from "react-redux";
+import callApi from "../function/callApi";
+import replaceChar from "../function/replaceChar";
 
 export default function Search() {
-    const maxRetries = 3;
-
     const [suggestion, setSuggestion] = useState([]);
     const [search, setSearch] = useState('');
+    const dispatch = useDispatch();
 
-    const createList = async (attempt = 1) => {
+    const createList = async () => {
         try {
-            const response = await axios.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=99999");
-            const resp = response.data.results;
-            resp.forEach(element => {
+            const data = await callApi("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=99999");
+            data.results.forEach(element => {
                 element.id = element.url.match(/\/(\d+)\/$/)[1];
                 element.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.id}.png`;
             });
-            localStorage.setItem('Pokemon', JSON.stringify(resp));
+            localStorage.setItem('Pokemon', JSON.stringify(data.results));
         } catch (error) {
-            console.error(`Tentativo ${attempt} fallito:`, error);
-            if (attempt < maxRetries) {
-                console.log(`Riprovo... (tentativo ${attempt + 1})`);
-                createList(attempt + 1);
-            } else {
-                console.error('Numero massimo di tentativi raggiunto. Impossibile completare la richiesta.');
-            }
+            console.error('Errore durante il recupero dei Pokémon:', error);
         }
     };
 
@@ -34,11 +27,11 @@ export default function Search() {
         const inputValue = e.target.value;
         setSearch(inputValue);
         
-        if (search.length > 0) {
+        if (inputValue.length > 0) {
             const allPokemon = JSON.parse(localStorage.getItem('Pokemon')) || [];
             const filteredSuggestions = allPokemon
                 .filter(pokemon => pokemon.name.toLowerCase().includes(inputValue.toLowerCase()))
-                .slice(0, 10); // Mostra solo i primi 10 suggerimenti
+                .slice(0, 10);
             
             setSuggestion(filteredSuggestions);
         } else {
@@ -46,16 +39,12 @@ export default function Search() {
         }
     };
 
-
-    const dispatch = useDispatch();
-
-    const handleClickSuggestion = (url)=> {
-        
+    const handleClickSuggestion = (url) => {
         dispatch(changeSelectedPokemon(url));
         dispatch(changeVisibility(true));
         setSuggestion([]);
         setSearch('');
-    }
+    };
 
     const handleBlur = () => {
         setTimeout(() => {
@@ -64,19 +53,15 @@ export default function Search() {
     };
 
     const handleFocus = () => {
-        
         if (search.length > 0) {
             const allPokemon = JSON.parse(localStorage.getItem('Pokemon')) || [];
             const filteredSuggestions = allPokemon
                 .filter(pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()))
-                .slice(0, 10); // Mostra solo i primi 10 suggerimenti
+                .slice(0, 10);
             
             setSuggestion(filteredSuggestions);
-        } else {
-            setSuggestion([]);
         }
-    }
-
+    };
 
     useEffect(() => {
         createList();
@@ -94,12 +79,11 @@ export default function Search() {
                 onBlur={handleBlur}
                 onFocus={handleFocus}
             />
-            <div className="p-2 position-absolute ms_dropdown card" style={{display: suggestion.length === 0 ? 'none' : 'block' }}>
-                <ul className=" list-unstyled m-0">
+            <div className="p-2 position-absolute ms_dropdown card" style={{ display: suggestion.length === 0 ? 'none' : 'block' }}>
+                <ul className="list-unstyled m-0">
                     {suggestion.map((element) => (
-                        <li className="p-2 rounded mb-1 d-flex justify-content-between" key={element.id} onClick={()=> {handleClickSuggestion(element.url)}}>
-                            <span>{element.name.charAt().toUpperCase() + element.name.slice(1)}</span>
-                            
+                        <li className="p-2 rounded mb-1 d-flex justify-content-between" key={element.id} onClick={() => handleClickSuggestion(element.url)}>
+                            <span>{replaceChar(element.name)}</span>
                         </li>
                     ))}
                 </ul>

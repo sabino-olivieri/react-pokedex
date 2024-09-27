@@ -2,11 +2,12 @@ import { useState } from "react";
 import Loader from "./Loader";
 import Range from "./Range";
 import Types from "./Types";
+import replaceChar from "../function/replaceChar";
 
 export default function DetailsCard({ data, found }) {
 
     const [loading, setLoading] = useState(true);
-    
+
 
     return (
         <>
@@ -36,7 +37,7 @@ export default function DetailsCard({ data, found }) {
                                     <span className="position-absolute id-pokemon">N° {data.id}</span>
                                     <div className="container">
                                         <div className="row">
-                                            <h3 className="card-title mb-4">{data.name ? data.name.charAt(0).toUpperCase() + data.name.slice(1) : ''}</h3>
+                                            <h3 className="card-title mb-4">{data.name ? replaceChar(data.name) : ''}</h3>
                                             <h6>Stats:</h6>
                                             {data.stats ? data.stats.map((data, index) => (
                                                 <Range data={data} key={index} />
