@@ -5,6 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import Loader from "./Loader";
 import { updateMyPokemon } from "../stores/slices/MyPokemonSlice";
 import replaceChar from "../function/replaceChar";
+import loadMyPokemon from "../function/loadMyPokemon";
+import isCaptured from "../function/isCaptured";
 
 export default function Card({ pokemon }) {
     const url = pokemon.url;
@@ -17,34 +19,11 @@ export default function Card({ pokemon }) {
     const [captured, setCaptured] = useState(false);
 
     useEffect(() => {
-
-        const storedPokemon = localStorage.getItem('MyPokemon');
-
-        if (storedPokemon) {
-
-            const parsedPokemon = JSON.parse(storedPokemon);
-            dispatch(updateMyPokemon(parsedPokemon));
-        } else {
-            dispatch(updateMyPokemon([]));
-        }
-
+        loadMyPokemon(dispatch);
     }, [dispatch]);
 
     useEffect(()=>{
-        if(id && myPokemon) {
-            
-            
-            myPokemon.some((element)=> {
-                // console.log(element);
-                
-                if(parseInt(id) === element.id) {
-                    setCaptured(true)
-                    return true;
-                } else {
-                    return false
-                }
-            })
-        }
+        setCaptured(isCaptured(id,myPokemon))
     },[myPokemon])
 
     const handleClick = () => {

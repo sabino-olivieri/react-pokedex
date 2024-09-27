@@ -1,9 +1,8 @@
-export default function Types({data}) {
-
+export default function Weaknesses({ data, multiplier }) {
     let bg = "";
     let color = "";
 
-    switch (data.type.name) {
+    switch (data) {
         case 'normal':
             bg = "#A8A77A"; 
             color = "#000000"; 
@@ -79,19 +78,18 @@ export default function Types({data}) {
         default:
             bg = "#000000"; 
             color = "#FFFFFF"; 
-
     }
 
     const style = {
         backgroundColor: bg,
         color: color,
-    }
+    };
+
+    const shouldShowMultiplier = multiplier !== 2 && multiplier !== 0.5 && multiplier !== 1;
 
     return (
-        <>
-            <div className="ms_bedge" style={style}>
-                {data.type.name.charAt(0).toUpperCase() + data.type.name.slice(1)}
-            </div>
-        </>
-    )
+        <div className="ms_bedge" style={style}>
+            {data.charAt(0).toUpperCase() + data.slice(1)} {shouldShowMultiplier && multiplier > 0 ? `x${multiplier}` : ''}
+        </div>
+    );
 }
