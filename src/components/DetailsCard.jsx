@@ -3,7 +3,7 @@ import Loader from "./Loader";
 import Range from "./Range";
 import Types from "./Types";
 
-export default function DetailsCard({ data }) {
+export default function DetailsCard({ data, found }) {
 
     const [loading, setLoading] = useState(true);
     

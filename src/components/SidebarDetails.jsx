@@ -6,7 +6,6 @@ import DetailsCard from "./DetailsCard";
 import EvolutionChain from "./EvolutionChain"; // Importa il nuovo componente
 import Loader from "./Loader";
 import CaptureOrLiberate from "./CaptureOrLiberate";
-import Toast from "./Toast";
 
 export default function SidebarDetails() {
     const visible = useSelector((state) => state.sidebarShow);
@@ -79,7 +78,7 @@ export default function SidebarDetails() {
 
                     </div>
                 </div>
-                <Toast />
+
             </div>
         </>
     )

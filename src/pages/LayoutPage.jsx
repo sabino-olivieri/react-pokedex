@@ -4,6 +4,7 @@ import store from '../stores/store';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import SidebarDetails from '../components/SidebarDetails';
+import Toast from '../components/Toast';
 
 // Creazione di un bottone con stile
 const Button = styled.button`
@@ -38,6 +39,7 @@ export default function LayoutPage() {
             <Outlet />
           </div>
         </div>
+        <Toast />
       </Provider>
     </>
   )

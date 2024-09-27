@@ -49,9 +49,9 @@ export default function ListPokemon() {
                     {poke.length > 0 ? (
                         <>
                             <div className='d-flex flex-wrap justify-content-between'>
-                                <h3>All pokemon:</h3>
+                                <h3>All Pokémon:</h3>
                                 <div className='bg-white text-black rounded d-flex align-items-center'>
-                                    <label htmlFor="num-pokemon" className='ps-2'>N° Pokemon: </label>
+                                    <label htmlFor="num-pokemon" className='ps-2'>N° Pokémon: </label>
                                     <select name=""  className='ms_option rounded px-4 py-2' value={numPokemon} id='num-pokemon' onChange={handleChange}>
                                         <option value="12">12</option>
                                         <option value="24">24</option>
@@ -70,7 +70,7 @@ export default function ListPokemon() {
                             </div>
                         </>
                     ) : (
-                        <h3>No pokemon found</h3>
+                        <h3>No Pokémon found</h3>
                     )}
                 </>
             )}

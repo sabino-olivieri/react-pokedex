@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateMyPokemon } from "../stores/slices/MyPokemonSlice";
 import Card from "../components/Card";
+import FreeAll from "../components/FreeAll";
 
 export default function MyPokemonPage() {
 
@@ -25,18 +26,25 @@ export default function MyPokemonPage() {
     return (
         <>
 
-    
+
             {myPokemon.length > 0 ? (
                 <>
-                    <h3>My Pokemon:</h3>
+
+                    <div className="d-flex justify-content-between mb-2">
+                        <h3>My Pokémon:</h3>
+                        <FreeAll />
+                    </div>
                     {myPokemon.map((pokemon) => (
                         <Card pokemon={pokemon} key={pokemon.id} />
                     ))}
+
+
+
                 </>
             ) : (
-                <h3>You don't have any Pokemon</h3>
+                <h3 className="p-3">You don't have any Pokémon</h3>
             )}
         </>
     );
-    
+
 }
