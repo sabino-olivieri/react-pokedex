@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Weaknesses from "./Weaknesses";
+import Types from "./Types";
 
 export default function PokemonWeaknesses({ types }) {
     const [damageRelations, setDamageRelations] = useState({
@@ -74,20 +74,20 @@ export default function PokemonWeaknesses({ types }) {
     const renderWeaknesses = () => {
         return Object.keys(damageRelations.weaknesses).map(type => {
             const multiplier = damageRelations.weaknesses[type];
-            return <Weaknesses key={type} data={type} multiplier={multiplier} />;
+            return <Types key={type} data={type} multiplier={multiplier} />;
         });
     };
 
     const renderResistances = () => {
         return Object.keys(damageRelations.resistances).map(type => {
             const multiplier = damageRelations.resistances[type];
-            return <Weaknesses key={type} data={type} multiplier={multiplier} />;
+            return <Types key={type} data={type} multiplier={multiplier} />;
         });
     };
 
     const renderImmunities = () => {
         return Object.keys(damageRelations.immunities).map(type => {
-            return <Weaknesses key={type} data={type} multiplier={0} />;
+            return <Types key={type} data={type} multiplier={0} />;
         });
     };
 

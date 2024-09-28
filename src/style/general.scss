@@ -23,6 +23,16 @@ body {
     background: url("/src/assets/body_bg.png");
     color: #f1f1f1;
 
+    &::-webkit-scrollbar {
+        width: 10px;
+        background: var(--bg-nav-red);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
     .pokedex {
         background-color: var(--bg-pokedex);
         padding: 20px;

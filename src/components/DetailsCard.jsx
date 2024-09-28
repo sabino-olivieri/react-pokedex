@@ -51,36 +51,46 @@ export default function DetailsCard({ data }) {
                                     <span className="position-absolute id-pokemon">N° {data.id}</span>
                                     <div className="container">
                                         <div className="row">
-                                            <h3 className="card-title mb-4">
+
+                                            <h3 className="card-title mb-2 me-5">
                                                 {data.name ? replaceChar(data.name) : ''}
                                             </h3>
-                                            <h6>Stats:</h6>
-                                            {data.stats
-                                                ? data.stats.map((stat, index) => (
-                                                    <Range data={stat} key={index} />
-                                                ))
-                                                : null}
 
-                                            <div className="col-6">
-                                                <span>Heigth: {data.height / 10} m</span>
-                                            </div>
 
-                                            <div className="col-6">
-                                                <span>Weight: {data.weight / 10} kg</span>
-                                            </div>
 
                                             {data.types ? (
                                                 <>
-                                                    <hr className="my-2 opacity-0" />
-                                                    <h6>{data.types.length > 1 ? 'Types:' : 'Type:'}</h6>
-                                                    <div className="d-flex gap-2">
+
+                                                    <div className="d-flex mt-1 mb-3 flex-wrap gap-2">
                                                         {data.types.map((typeData, index) => (
-                                                            <Types data={typeData} key={index} />
+                                                            <Types data={typeData.type.name} key={index} />
                                                         ))}
                                                     </div>
-                                                    {/* Aggiungi qui il componente delle debolezze */}
-                                                    <PokemonWeaknesses types={data.types} />
                                                 </>
+                                            ) : null}
+                                            <div className="container my-4">
+                                                <div className="row">
+
+                                                    {data.stats
+                                                        ? data.stats.map((stat, index) => (
+                                                            <Range data={stat} key={index} />
+                                                        ))
+                                                        : null}
+
+                                                    <div className="col-6">
+                                                        <span>Heigth: {data.height / 10} m</span>
+                                                    </div>
+
+                                                    <div className="col-6">
+                                                        <span>Weight: {data.weight / 10} kg</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {data.types ? (
+
+                                                <PokemonWeaknesses types={data.types} />
+
                                             ) : null}
                                         </div>
                                     </div>
