@@ -23,8 +23,9 @@ export default function Card({ pokemon }) {
     }, [dispatch]);
 
     useEffect(()=>{
+        
         setCaptured(isCaptured(id,myPokemon))
-    },[myPokemon])
+    },[myPokemon,url])
 
     const handleClick = () => {
         dispatch(changeSelectedPokemon(url));
