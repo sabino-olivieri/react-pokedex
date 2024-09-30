@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <LayoutPage></LayoutPage>, // quale component mandare
     children: [
       {
-        path: "*",    // da provare
+        path: "*",
         element: <ErrorPage />,
       },
       {

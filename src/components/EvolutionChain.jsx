@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EvolutionCard from "./EvolutionCard";
 import Loader from "./Loader";
-import callApi from "../function/callApi"; // Importa la tua funzione callApi
+import callApi from "../function/callApi";
 
 const EvolutionChain = ({ pokemonUrl }) => {
     const [evolutionChain, setEvolutionChain] = useState(null);

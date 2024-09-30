@@ -30,7 +30,7 @@ export default function Navbar() {
                                 <Link to={'/'} onClick={handleLinkClick}><span>Home</span></Link> 
                             </li>
                             <li className="nav-item">
-                                <Link to={'/mypokemon'} onClick={handleLinkClick}><span>My Pokemon</span></Link>
+                                <Link to={'/mypokemon'} onClick={handleLinkClick}><span>My Pokémon</span></Link>
                             </li>
                         </ul>
                         <Search />
